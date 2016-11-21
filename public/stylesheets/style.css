@@ -6,3 +6,55 @@ body {
 a {
   color: #00B7FF;
 }
+
+.wrapper  {
+  width: 100%;
+  max-width:960px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+
+}
+
+.flex-container-one {
+  display: flex;
+  background-color: #0C1D33;
+  max-width: 960px;
+}
+
+.box {
+  height: 100px;
+  min-width: 100px;
+}
+
+/*LOGO*/
+.one {
+  /*background: green;*/
+  flex-grow:1;
+  padding-left: 15px;
+  padding-top: 10px;
+}
+
+/*SEARCH BAR*/
+.two {
+  /*background: red;*/
+  flex-grow: 1;
+  padding: 20px;
+
+}
+
+
+.button {
+  display: inline-block;
+}
+
+.three {
+  /*background: yellow;*/
+  flex-grow: 1;
+  padding-top: 35px;
+}
+
+/*HEADER IMAGE*/
+ img {
+  display: flex;
+  max-width: 100%;
+}
