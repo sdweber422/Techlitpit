@@ -1,5 +1,113 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+
+
+        div.wrapper
+          div.flex-container-one
+            div.box.one
+                img(src= '../images/lplogo.png')
+
+
+            div.box.two
+
+                form.navbar-form.navbar-left(role='search')
+                .form-group
+                  input.form-control.search-box(type='text', placeholder='Search')
+
+            div.box.three
+               button.btn.btn-default(type='submit') Submit
+
+          nav.navbar.navbar-default
+            .container-fluid
+              // Brand and toggle get grouped for better mobile display
+              .navbar-header
+                button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1', aria-expanded='false')
+                  span.sr-only Toggle navigation
+                  span.icon-bar
+                  span.icon-bar
+                  span.icon-bar
+              // Collect the nav links, forms, and other content for toggling
+              #bs-example-navbar-collapse-1.collapse.navbar-collapse
+                ul.nav.navbar-nav
+                  li
+                    a(href='#')
+                      | HOME
+                      span.sr-only (current)
+
+
+                  li
+                    a(href='#myModal' data-toggle='modal', data-target='#myModal') ADD BOOKS TO LIBRARY
+                    li.dropdown
+                      a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+                        | BOOKS BY SUBJECT
+                        span.caret
+                      ul.dropdown-menu
+                        li
+                          a(href='#') ALGORITHMS
+                        li
+                          a(href='#') ANGULAR JS
+                        li
+                          a(href='#') C++
+                        li
+                          a(href='#') C#
+                        li
+                          a(href='#') CSS
+                        li
+                          a(href='#') COFFEESCRIPT
+                        li
+                          a(href='#') HTML
+                        li
+                          a(href='#') JAVA
+                        li
+                          a(href='#') JAVASCRIPT
+                        li
+                          a(href='#') JQUERY
+                        li
+                          a(href='#') MONGO DB
+                        li
+                          a(href='#') NODE
+                        li
+                          a(href='#') PHP
+                  form.navbar-form.navbar-left
+
+
+
+            // Modal
+            #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+              .modal-dialog(role='document')
+                .modal-content
+                  .modal-header
+                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                      span(aria-hidden='true') ×
+                  form.modal-body( method="post", action="/user/signup" )
+
+                    fieldset
+
+
+                      .control-group
+                        // title
+                        label.control-label(for='title') Book Title
+                        .controls
+                          input#username.input-xlarge(type='text', name='UserName', placeholder='')
+                          p.help-block  Add the name of books or ebooks here
+                      .control-group
+                        // E-mail
+                        label.control-label(for='email') E-mail
+                        .controls
+                          input#email.input-xlarge(type='text', name='Email', placeholder='')
+                          p.help-block Please provide your E-mail
+                      .control-group
+                        // Password
+                        label.control-label(for='password') Password
+                        .controls
+                          input#password.input-xlarge(type='password', name='Password', placeholder='')
+                          p.help-block Password should be at least 4 characters
+
+                          .modal-footer
+                            button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                            button.btn.btn-primary(type='submit') Save changes
+
+
+
+            img(src='/images/header.jpeg')
