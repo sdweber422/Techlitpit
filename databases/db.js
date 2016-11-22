@@ -17,12 +17,12 @@ const Resources = {
     return db.any( getAllResources, [offset] )
   },
   createAuthor: (author, resource_id) => {
-    return db.any( addAuthor, [author, resource_id])
+    return db.one( addAuthor, [author, resource_id])
   },
   createCategory: (category, resource_id) => {
     return db.any( addCategory, [category, resource_id] )
   },
-  createResource: (title, description, image_link, url, authors, categories) => {
+  createResource: (title, description, image_link, url) => {
     return db.one( addResource, [title, description, image_link, url])
   }
 }
