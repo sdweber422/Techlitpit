@@ -89,20 +89,32 @@ block content
                     // title
                     label.control-label(for='title') Book Title
                     .controls
-                      input#title.input-xlarge(type='text', name='Title', placeholder='')
+                      input#title.input-xlarge(type='text', name='title', placeholder='')
                       p.help-block  Add the name of books or ebooks here
                   .control-group
-                    // Image-URL
-                    label.control-label(for='Image URL') Image URL
+                    // authors
+                    label.control-label(for='title') Author(s)
                     .controls
-                      input#image-url.input-xlarge(type='text', name='Email', placeholder='')
+                      input#authors.input-xlarge(type='text', name='authors', placeholder='')
+                      p.help-block  Add the name of authors here
+                  .control-group
+                    // url
+                    label.control-label(for='url') URL
+                    .controls
+                      input#url.input-xlarge(type='text', name='url', placeholder='')
+                      p.help-block Enter the link to your book or ebook
+                  .control-group
+                    // image_link
+                    label.control-label(for='image_link') Image URL
+                    .controls
+                      input#image_link.input-xlarge(type='text', name='image_link', placeholder='')
                       p.help-block Enter an Image URL for your book or ebook
                   .control-group
-                    // Description
+                    // description
                     label.control-label(for='description') Enter a description for your book
                     .controls
                       .form-group
-                        textarea.form-control(placeholder='Book Description or Excerpt')
+                        textarea.form-control(placeholder='Book Description or Excerpt', name='description')
 
                     label Add a Section for your book
                     br
