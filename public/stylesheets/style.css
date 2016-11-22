@@ -17,19 +17,19 @@ a {
 
 .flex-container-one {
   display: flex;
-  background-color: #0C1D33;
   max-width: 960px;
 }
 
 .box {
   height: 100px;
   min-width: 100px;
+  background-color:#003B70
+
 }
 
 /*LOGO*/
 .one {
   /*background: green;*/
-  flex-grow:1;
   padding-left: 15px;
   padding-top: 10px;
 }
@@ -42,7 +42,6 @@ a {
 
 }
 
-
 .button {
   display: inline-block;
 }
@@ -54,7 +53,36 @@ a {
 }
 
 /*HEADER IMAGE*/
- img {
+ .header {
   display: flex;
   max-width: 100%;
+}
+
+/*BOOK SECTIONS*/
+.flex-container-two {
+  display: flex;
+  max-width: 960px;
+  max-height: 1150;
+  flex-direction: column;
+  padding-left: 50px;
+
+}
+
+.a {
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+.lower-box.b {
+  /*background: red;*/
+  flex-grow: 1;
+
+}
+.lower-box.c {
+  /*background: yellow;*/
+  flex-grow: 1;
+}
+.lower-box .small {
+  height: 150px;
+  padding-top: 20px;
 }
