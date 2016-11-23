@@ -6,8 +6,7 @@ var Resources = require('../databases/db.js').Resources;
 router.get('/', function(req, res, next) {
   const page = parseInt(req.query.page || 1)
   const offset = (page - 1) * 10
-  Resources.all(offset).then( results => {
-    console.log(results)
+  Resources.all(offset).then( results => { results
   })
   res.render('index', { title: 'LitPit' })
 
@@ -22,10 +21,11 @@ router.post('/addBook', function(req, res, next) {
   const { categories } = req.body
   const writers = []
   const genres = []
-  return Resources.createResource(title, description, image_link, url).then( (resource_id) => {
-      console.log(resource_id[0], "   ", authors)
-      Promise.resolve(Resources.createAuthor(authors, resource_id[0]))
-    })
+  console.log(req.body)
+  return Resources.createResource(title, description, image_link, url)
+  .then( (resource_id) => {
+    Promise.resolve(Resources.createAuthor(authors, resource_id.id))
+  })
 
       // if(!authors) {return Promise.resolve(authors)}
       // return resource_id
