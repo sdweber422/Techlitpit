@@ -118,11 +118,12 @@ block content
                       .form-group
                         textarea.form-control(placeholder='Book Description or Excerpt', name='description')
                   .control-group
-                    label.control-label(for='categories') Add a Category for your book
+                    label.control-label(for='categories') Add categories for your book
                     .controls
                       .form-group
                         .form-control#dropdown(name='categories')
                           select
+                            option(value='')
                             option(value='Algorithms') ALGORITHMS
                             option(value='Angular.js') ANGULAR JS
                             option(value='C++') C++
@@ -135,7 +136,7 @@ block content
                             option(value='jQuery') JQUERY
                             option(value='Mongo DB') MONGO DB
                             option(value='Node.js') NODE
-                      .categories
+                          .categories
                     .modal-footer
                       button.btn.btn-secondary(type='button', data-dismiss='modal') Close
                       button.btn.btn-primary(type='submit') Save changes

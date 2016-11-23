@@ -17,27 +17,36 @@ router.post('/addBook', function(req, res, next) {
   const { description } = req.body || 'No description provided'
   const { image_link } = req.body || 'No image available'
   const { url } = req.body
-  const { authors } = req.body
-  const { categories } = req.body
+  var { authors } = req.body
+  var { categories } = req.body
   const writers = []
   const genres = []
   console.log(req.body)
   return Resources.createResource(title, description, image_link, url)
   .then( (resource_id) => {
-    Promise.resolve(Resources.createAuthor(authors, resource_id.id))
-  })
+    if(!authors) {return Promise.resolve(authors)}
+    if(!Array.isArray(authors)) {
+      authors = [authors]
+    }
 
-      // if(!authors) {return Promise.resolve(authors)}
-      // return resource_id
-    // .then( (resource_id) => {
-    //   if(!categories) {return Promise.resolve(categories)}
-    //   categories.forEach( category => {
-    //     Promise.resolve(Resources.addCategory(category, resource_id))
-    //   })
-    // })
-    .then( () => {
-      res.redirect('/')
+    authors.forEach( author => {
+      writers.push(Resources.createAuthor(author, resource_id.id))
     })
+    return Promise.all(writers)
+  })
+  .then( (results) => {
+    if(!categories) {return Promise.resolve(categories)}
+    if(!Array.isArray(categories)) {
+      categories = [categories]
+    }
+    categories.forEach( category => {
+      genres.push(Resources.createCategory(category, results[0].resource_id))
+    })
+    return Promise.all(genres)
+  })
+  .then( () => {
+    res.redirect('/')
+  })
 })
 
 module.exports = router;
