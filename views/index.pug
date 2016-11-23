@@ -94,8 +94,10 @@ block content
                   .control-group
                     // authors
                     label.control-label(for='title') Author(s)
+                          button.addAuthorButton.span.glyphicon.glyphicon-plus.btn.btn-xs
                     .controls
-                      input#authors.input-xlarge(type='text', name='authors', placeholder='')
+                      input#url.input-xlarge(type='text', name='authors', placeholder='')
+                      .authors
                       p.help-block  Add the name of authors here
                   .control-group
                     // url
@@ -115,30 +117,25 @@ block content
                     .controls
                       .form-group
                         textarea.form-control(placeholder='Book Description or Excerpt', name='description')
-
-                    label Add a Section for your book
-                    br
-                    select
-                      option(value='AL') ALGORITHMS
-                      option(value='AK') ANGULAR JS
-                      option(value='AZ') C++
-                      option(value='AR') C#
-                      option(value='CA') CSS
-                      option(value='CO') COFFEESCRIPT
-                      option(value='CT') HTML
-                      option(value='DE') JAVA
-                      option(value='DC') JAVASCRIPT
-                      option(value='FL') JQUERY
-                      option(value='GA') MONGO DB
-                      option(value='HI') NODE
-                      option(value='ID') Idaho
-                      option(value='IL') Illinois
-                      option(value='IN') Indiana
-                      option(value='IA') Iowa
-                      option(value='KS') Kansas
-                      option(value='KY') Kentucky
-                      option(value='LA') Louisiana
-
+                  .control-group
+                    label.control-label(for='categories') Add a Category for your book
+                    .controls
+                      .form-group
+                        .form-control#dropdown(name='categories')
+                          select
+                            option(value='Algorithms') ALGORITHMS
+                            option(value='Angular.js') ANGULAR JS
+                            option(value='C++') C++
+                            option(value='C#') C#
+                            option(value='CSS') CSS
+                            option(value='CoffeeScript') COFFEESCRIPT
+                            option(value='HTML') HTML
+                            option(value='JAVA') JAVA
+                            option(value='Javascript') JAVASCRIPT
+                            option(value='jQuery') JQUERY
+                            option(value='Mongo DB') MONGO DB
+                            option(value='Node.js') NODE
+                      .categories
                     .modal-footer
                       button.btn.btn-secondary(type='button', data-dismiss='modal') Close
                       button.btn.btn-primary(type='submit') Save changes

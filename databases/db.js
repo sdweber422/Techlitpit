@@ -5,11 +5,11 @@ const db = pgp(connectionString)
 
 const getAllResources = 'SELECT * FROM resources LIMIT 10 OFFSET $1'
 
-const addResource = 'INSERT INTO resources (id, title, description, image_link, url) VALUES (DEFAULT, $1, $2, $3, $4) RETURNING id'
+const addResource = 'INSERT INTO resources (id, title, description, image_link, url) VALUES (DEFAULT, $1, $2, $3, $4) RETURNING *'
 
-const addAuthor = 'INSERT INTO authors (id, name) VALUES (DEFAULT, $1) ON CONFLICT DO NOTHING; INSERT INTO resource_authors (author_id, resource_id) SELECT authors.id, resources.id FROM authors JOIN resources ON resources.id = $2 WHERE name = $1'
+const addAuthor = 'INSERT INTO authors (id, name) VALUES (DEFAULT, $1) ON CONFLICT DO NOTHING; INSERT INTO resource_authors (author_id, resource_id) SELECT authors.id, resources.id FROM authors JOIN resources ON resources.id = $2 WHERE name = $1 ON CONFLICT DO NOTHING RETURNING *'
 
-const addCategory = 'INSERT INTO categories (id, name) VALUES (DEFAULT, $1) ON CONFLICT DO NOTHING; INSERT INTO resource_categories (category_id, resource_id) SELECT categories.id, resources.id FROM categories JOIN resources ON resources.id = $2 WHERE name = $1 ON CONFLICT DO NOTHING'
+const addCategory = 'INSERT INTO categories (id, name) VALUES (DEFAULT, $1) ON CONFLICT DO NOTHING; INSERT INTO resource_categories (category_id, resource_id) SELECT categories.id, resources.id FROM categories JOIN resources ON resources.id = $2 WHERE name = $1 ON CONFLICT DO NOTHING RETURNING *'
 
 
 const Resources = {
