@@ -4,12 +4,7 @@ var Resources = require('../databases/db.js').Resources;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  const page = parseInt(req.query.page || 1)
-  const offset = (page - 1) * 10
-  Resources.all(offset).then( results => { results
-  })
   res.render('index', { title: 'LitPit' })
-
 });
 
 router.post('/addBook', function(req, res, next) {
@@ -21,14 +16,12 @@ router.post('/addBook', function(req, res, next) {
   var { categories } = req.body
   const writers = []
   const genres = []
-  console.log(req.body)
   return Resources.createResource(title, description, image_link, url)
   .then( (resource_id) => {
     if(!authors) {return Promise.resolve(authors)}
     if(!Array.isArray(authors)) {
       authors = [authors]
     }
-
     authors.forEach( author => {
       writers.push(Resources.createAuthor(author, resource_id.id))
     })

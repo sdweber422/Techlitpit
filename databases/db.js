@@ -5,11 +5,17 @@ const db = pgp(connectionString)
 
 const getAllResources = 'SELECT * FROM resources LIMIT 10 OFFSET $1'
 
+const getAuthorsByResourceIds = 'SELECT * FROM authors JOIN resource_authors ON author_id = id WHERE resource_id = $1'
+
+const getCategoriesByResourceIds = 'SELECT * FROM categories JOIN resource_categories ON category_id = id WHERE resource_id = $1'
+
 const addResource = 'INSERT INTO resources (id, title, description, image_link, url) VALUES (DEFAULT, $1, $2, $3, $4) RETURNING *'
 
 const addAuthor = 'INSERT INTO authors (id, name) VALUES (DEFAULT, $1) ON CONFLICT DO NOTHING; INSERT INTO resource_authors (author_id, resource_id) SELECT authors.id, resources.id FROM authors JOIN resources ON resources.id = $2 WHERE name = $1 ON CONFLICT DO NOTHING RETURNING *'
 
 const addCategory = 'INSERT INTO categories (id, name) VALUES (DEFAULT, $1) ON CONFLICT DO NOTHING; INSERT INTO resource_categories (category_id, resource_id) SELECT categories.id, resources.id FROM categories JOIN resources ON resources.id = $2 WHERE name = $1 ON CONFLICT DO NOTHING RETURNING *'
+
+const getResourceById = 'SELECT * FROM resources WHERE id = $1'
 
 
 const Resources = {
@@ -24,6 +30,15 @@ const Resources = {
   },
   createResource: (title, description, image_link, url) => {
     return db.one( addResource, [title, description, image_link, url])
+  },
+  getAuthors: (resource_id) => {
+    return db.any( getAuthorsByResourceIds, [resource_id] )
+  },
+  getCategories: (resource_id) => {
+    return db.any( getCategoriesByResourceIds, [resource_id] )
+  },
+  getById: (resource_id) => {
+    return db.one( getResourceById, [resource_id] )
   }
 }
 
