@@ -13,11 +13,9 @@ Creating this web application will provide exposure to:
 
 
 ## Specifications
-- [ ] Any user can add books into the system via an admin page
-- [ ] Books entered in the system are listed on the home page, in pages of 10
-- [ ] Users can search for books by title OR by author OR by genre, and search results will be presented 
-- [ ] Users can view book details on a book detail page, linked to from the listing or search pages
-- [ ] All code submissions are peer reviewed via GitHub PR by at least two members of the team, and master is always in a stable state (tests passed, site functions)
+- [x] Any user can add books into the system via an admin page
+- [x] Books entered in the system are listed
+- [x] All code submissions are peer reviewed via GitHub PR by at least two members of the team, and master is always in a stable state (tests passed, site functions)
 
 ### Required
 - [x] The artifact produced is properly licensed, preferably with the [MIT license](https://opensource.org/licenses/MIT).
@@ -34,7 +32,8 @@ Creating this web application will provide exposure to:
 - [ ] Autocomplete dropdown search
 - [ ] Parse search results to perform multiple search types
 - [ ] Implement full test search for Postgresql
-
+- [ ] Users can search for books by title OR by author OR by genre, and search results will be presented 
+- [ ] Users can view book details on a book detail page, linked to from the listing or search pages
 ## Resources
 
 Model -
