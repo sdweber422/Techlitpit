@@ -5,9 +5,9 @@ const db = pgp(connectionString)
 
 const getAllResources = 'SELECT * FROM resources LIMIT 10 OFFSET $1'
 
-const getAuthorsByResourceIds = 'SELECT * FROM authors JOIN resource_authors ON author_id = id WHERE resource_id = $1'
+const getAuthorsByResourceIds = 'SELECT * FROM authors JOIN resource_authors ON author_id = id WHERE resource_id IN ($1:csv)'
 
-const getCategoriesByResourceIds = 'SELECT * FROM categories JOIN resource_categories ON category_id = id WHERE resource_id = $1'
+const getCategoriesByResourceIds = 'SELECT * FROM categories JOIN resource_categories ON category_id = id WHERE resource_id IN ($1:csv)'
 
 const addResource = 'INSERT INTO resources (id, title, description, image_link, url) VALUES (DEFAULT, $1, $2, $3, $4) RETURNING *'
 
@@ -21,7 +21,25 @@ const getResourceById = 'SELECT * FROM resources WHERE id = $1'
 const Resources = {
   all: (offset) => {
     return db.any( getAllResources, [offset] )
-  },
+    .then( results => {
+      const resources = results
+      const resourceIds = results.map( result => result.id )
+      const authors = []
+      const categories = []
+      return Promise.all([Resources.getAuthors(resourceIds), Resources.getCategories(resourceIds), resources])
+    })
+    .then( answer => {
+      const authors = answer[0]
+      const categories = answer[1]
+      const results = answer[2]
+      console.log(results[0].title)
+      results.forEach( result => {
+      result.authors = authors.filter( author => author.resource_id === result.id)
+      result.categories = categories.filter( category => category.resource_id === result.id)
+    })
+    return results
+  })
+},
   createAuthor: (author, resource_id) => {
     return db.one( addAuthor, [author, resource_id])
   },
