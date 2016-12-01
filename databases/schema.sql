@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS resources (
   id SERIAL PRIMARY KEY,
   title VARCHAR(255) NOT NULL UNIQUE,
   description text,
-  image_link VARCHAR(512) UNIQUE,
+  image_link VARCHAR(512),
   url VARCHAR(512) UNIQUE
 );
 
