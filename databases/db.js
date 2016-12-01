@@ -24,15 +24,12 @@ const Resources = {
     .then( results => {
       const resources = results
       const resourceIds = results.map( result => result.id )
-      const authors = []
-      const categories = []
       return Promise.all([Resources.getAuthors(resourceIds), Resources.getCategories(resourceIds), resources])
     })
     .then( answer => {
       const authors = answer[0]
       const categories = answer[1]
       const results = answer[2]
-      console.log(results[0].title)
       results.forEach( result => {
       result.authors = authors.filter( author => author.resource_id === result.id)
       result.categories = categories.filter( category => category.resource_id === result.id)

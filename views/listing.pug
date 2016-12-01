@@ -1,15 +1,12 @@
 extends layout
 
 block content
-
-
-  //Items passed from listing.js get '/' router
-  // Running a loop which will go through each item(resource) and give us access through dot notation
-  //Two ways of accessing the data are shown. The equal sign must be attached to the element tag to work
   ul
     each item in items
-      li= item.title
-      li= item.description
-      li #{item.image_link}
-      li #{item.url}
-      
+      li#title #{item.title}
+      li#description= item.description
+      li
+      -item.image_link ? item.image_link = item.image_link : item.image_link = 'https://images.freecreatives.com/wp-content/uploads/2015/05/3d-book-smart-object.png'
+        img#image(src=`${item.image_link}`)
+      li#url
+        a #{item.url}
