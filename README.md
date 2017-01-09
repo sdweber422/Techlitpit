@@ -12,6 +12,8 @@ Creating this web application will provide exposure to:
 - Simple server side templating (to render data retrieved from the database)
 
 
+
+
 ## Specifications
 - [x] Any user can add books into the system via an admin page
 - [x] Books entered in the system are listed
